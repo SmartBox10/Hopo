@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Đọc file Excel
-df = pd.read_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx')
+df = pd.read_excel('KHÁCH HÀNG HOPO.xlsx')
 
 
 class Tu:  # Lop Tu
