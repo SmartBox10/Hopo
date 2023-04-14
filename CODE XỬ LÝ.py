@@ -57,3 +57,13 @@ class Khachhang(QuanLyTuDo):  # Lop Khach hang
                 break
             else:
                 print("Sai tên đăng nhập hoặc mật khẩu, vui lòng nhập lại.")
+
+tu1 = Tu("A1", "trong")
+tu2 = Tu("A2", "trong")
+tu3 = Tu("A3", "trong")
+tu4 = Tu("A4", "trong")
+tu5 = Tu("A5", "trong")
+danh_sach_tu = [tu1, tu2, tu3, tu4, tu5]
+quan_ly_tu_do = QuanLyTuDo(danh_sach_tu)
+quan_ly_tu_do.hien_thi_so_tu_con_trong()
+quan_ly_tu_do.hien_thi_tu_trong()
