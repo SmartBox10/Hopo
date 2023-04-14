@@ -47,15 +47,22 @@ class Khachhang(QuanLyTuDo):  # Lop Khach hang
         self.end_time = None
         self.thoi_gian_su_dung = None
 
+
     def login(self):  # Ham dang nhap
-        while True:
-            self.ten_dang_nhap = input("Tên đăng nhập: ")
-            self.mat_khau = input("Mật khẩu: ")
-            if any((df['TÊN ĐĂNG NHẬP'] == self.ten_dang_nhap) & (df['MẬT KHẨU'] == self.mat_khau)):
-                # Tên đăng nhập và mật khẩu khớp với dữ liệu trong file Excel
-                break
+        # Kiểm tra tên đăng nhập
+        if self.ten_dang_nhap in df['TÊN ĐĂNG NHẬP'].values:
+            # Lọc các hàng có tên đăng nhập trùng với self.ten_dang_nhap
+            df_filtered = df[df['TÊN ĐĂNG NHẬP'] == self.ten_dang_nhap]
+            # Kiểm tra mật khẩu
+            if len(df_filtered) > 0 and df_filtered['MẬT KHẨU'].values[0] == self.mat_khau:
+                # Tên đăng nhập và mật khẩu đúng
+                return 0
             else:
-                print("Sai tên đăng nhập hoặc mật khẩu, vui lòng nhập lại.")
+                # Mật khẩu không đúng
+                return 1
+        else:
+            # Tên đăng nhập không tồn tại trong file Excel
+            return 1
 
 
 tu1 = Tu("A1", "trong")
@@ -67,3 +74,6 @@ danh_sach_tu = [tu1, tu2, tu3, tu4, tu5]
 quan_ly_tu_do = QuanLyTuDo(danh_sach_tu)
 quan_ly_tu_do.hien_thi_so_tu_con_trong()
 quan_ly_tu_do.hien_thi_tu_trong()
+
+
+
