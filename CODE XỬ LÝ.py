@@ -58,6 +58,7 @@ class Khachhang(QuanLyTuDo):  # Lop Khach hang
             else:
                 print("Sai tên đăng nhập hoặc mật khẩu, vui lòng nhập lại.")
 
+
 tu1 = Tu("A1", "trong")
 tu2 = Tu("A2", "trong")
 tu3 = Tu("A3", "trong")
