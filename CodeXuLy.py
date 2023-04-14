@@ -38,10 +38,9 @@ class QuanLyTuDo:  # Lop Quan Li Tu Do
 
 
 class Khachhang(QuanLyTuDo):  # Lop Khach hang
-    def __init__(self, ten_dang_nhap, sdt, mat_khau):
+    def __init__(self, ten_dang_nhap, mat_khau):
         super().__init__(danh_sach_tu)
         self.ten_dang_nhap = ten_dang_nhap
-        self.sdt = sdt
         self.mat_khau = mat_khau
         self.tu_da_chon = None
         self.start_time = None
