@@ -209,7 +209,7 @@
      <string>C5</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="logout">
     <property name="geometry">
      <rect>
       <x>180</x>

@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from fileUI import Ui_MainWindow
+from check import Ui_MainWindow
 class MAIN_HANDLE(Ui_MainWindow):
     def __init__(self):
         self.setupUi(MainWindow)

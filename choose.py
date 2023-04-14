@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'fileUI1.ui'
+# Form implementation generated from reading ui file 'choose.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -12,11 +12,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow1(object):
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(464, 248)
+        MainWindow.resize(511, 273)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+
         self.A1 = QtWidgets.QRadioButton(self.centralwidget)
         self.A1.setGeometry(QtCore.QRect(130, 40, 62, 14))
         self.A1.setObjectName("A1")
@@ -62,23 +65,19 @@ class Ui_MainWindow1(object):
         self.radioButton_15 = QtWidgets.QRadioButton(self.centralwidget)
         self.radioButton_15.setGeometry(QtCore.QRect(290, 120, 62, 14))
         self.radioButton_15.setObjectName("radioButton_15")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(180, 150, 81, 21))
-        self.pushButton.setObjectName("pushButton")
+        self.logout = QtWidgets.QPushButton(self.centralwidget)
+        self.logout.setGeometry(QtCore.QRect(180, 150, 81, 21))
+        self.logout.setObjectName("logout")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 464, 18))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 511, 18))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.list=[self.A1,self.A2]
-        for i in self.list:
-            i.hide()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -98,9 +97,11 @@ class Ui_MainWindow1(object):
         self.A5.setText(_translate("MainWindow", "A5"))
         self.B5.setText(_translate("MainWindow", "B5"))
         self.radioButton_15.setText(_translate("MainWindow", "C5"))
-        self.pushButton.setText(_translate("MainWindow", "CHOOSE"))
+        self.logout.setText(_translate("MainWindow", "GIỮ ĐỒ"))
+        self.list=[]
 
-
+        for i in self.list:
+            i.hide()
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
