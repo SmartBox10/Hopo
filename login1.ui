@@ -20,7 +20,7 @@
    <widget class="QLabel" name="LabelTen">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>90</x>
       <y>130</y>
       <width>101</width>
       <height>51</height>
@@ -85,8 +85,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>60</y>
+      <x>110</x>
+      <y>90</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -95,14 +95,17 @@
      <string>Số tủ còn trống</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="showquanity">
+   <widget class="QLabel" name="showquanity">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>90</y>
-      <width>113</width>
-      <height>20</height>
+      <x>270</x>
+      <y>100</y>
+      <width>61</width>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
