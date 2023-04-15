@@ -16,7 +16,8 @@ class QuanLyTuDo:  # Lop Quan Li Tu Do
 
     def hien_thi_so_tu_con_trong(self):
         so_tu_con_trong = sum(tu.trang_thai == "trong" for tu in self.danh_sach_tu)
-        print(f"Số tủ còn trống: {so_tu_con_trong}")
+        return so_tu_con_trong
+        #print(f"Số tủ còn trống: {so_tu_con_trong}")
 
     def hien_thi_tu_trong(self):
         print("Các mã tủ còn trống:")

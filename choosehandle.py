@@ -1,8 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from choose import Ui_MainWindow1
-class MAIN_HANDLE1(Ui_MainWindow1):
-    def __init__(self):
-        self.setupUi(MainWindow)
+
+class CHOOSE_HANDLE(Ui_MainWindow1):
+    def __init__(self,mainwindow):
+        self.setupUi(mainwindow)
         self.logout.clicked.connect(self.chooseRadio)
 
     def chooseRadio(self):
