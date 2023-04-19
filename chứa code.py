@@ -199,3 +199,95 @@ while True:
                 print("Lựa chọn không hợp lệ. Vui lòng nhập lại.")
     else:
         print("Tên đăng nhập hoặc mật khẩu không đúng, vui lòng nhập lại.")
+ def cap_nhap_tu_dang_su_dung(self,khachhang):
+        if
+
+
+
+    def cap_nhat_trang_thai_tu(self):
+        for i in Tu.danh_sach_tu_trong:
+            if i.ma_tu == self.ma_tu:
+                self.trang_thai = "đã đặt"
+                Tu.danh_sach_tu_trong.remove(self)
+                Tu.danh_sach_tu_da_dat.append(self)
+                break
+
+        for tu in Tu.danh_sach_tu_da_dat:
+            if tu.ma_tu == self.ma_tu:
+                self.trang_thai = "trống"
+                Tu.danh_sach_tu_da_dat.remove(self)
+                Tu.danh_sach_tu_trong.append(self)
+                break
+
+
+    def them_tu_trong(self):
+        if self.trang_thai == "trống":
+            Tu.danh_sach_tu_trong.append(self)  # Thêm tủ trống vào danh sách tủ trống
+
+
+    def them_tu_da_dat(self):
+        if self.trang_thai == "đã đặt":
+            Tu.danh_sach_tu_da_dat.append(self)  # Thêm tủ đã đặt vào danh sách tủ đã đặt
+
+    @classmethod
+    def xoa_tu_trong(self):
+        for i in Tu.danh_sach_tu_trong:
+            if i.ma_tu == self.ma_tu:
+                Tu.danh_sach_tu_trong.remove(self)
+                break
+
+    @classmethod
+    def xoa_tu_da_dat(cls, ma_tu):
+        for tu in QuanLyTuDo.danh_sach_tu_da_dat:
+            if tu.ma_tu == ma_tu:
+                QuanLyTuDo.danh_sach_tu_da_dat.remove(tu)
+                break
+
+    @classmethod
+    def hien_thi_tu_trong(cls):
+        print("Danh sách tủ trống:")
+        for tu in QuanLyTuDo.danh_sach_tu_trong:
+            print(tu.ma_tu)
+
+    @classmethod
+    def hien_thi_tu_da_dat(cls):
+        print("Danh sách tủ đã đặt:")
+        for tu in QuanLyTuDo.danh_sach_tu_da_dat:
+            print(tu.ma_tu)
+
+    @classmethod
+    def tinh_tong_so_tu_trong(cls):
+        return len(QuanLyTuDo.danh_sach_tu_trong)
+
+    @classmethod
+    def tinh_tong_so_tu_da_dat(cls):
+        return len(QuanLyTuDo.danh_sach_tu_da_dat)
+print("chọn chức năng xử lý")
+print("1.chọn tủ")
+print("2. Trả tử")
+print("3. Thoát")
+while True:
+    print("Vui lòng đăng nhập")
+    ten_dang_nhap = input("Nhập tên đăng nhập: ")
+    mat_khau = input("Nhật mật khẩu: ")
+    khach_hang=Khachhang(ten_dang_nhap, mat_khau)
+    if khach_hang.login() == 1:
+        while True:
+            choice = input("Nhập lựa chọn của bạn: ")
+            if choice == "1":
+                ma_tu=input("nhập tủ bạn muốn chọn")
+                if chon_tu(ma_tu,khach_hang)==1:
+                    print("chọn tủ thành công")
+                else:
+                    print("bạn đang sử dụng tủ khác hoặc tủ đã có người s dụng")
+            elif choice == "2":
+                ma_tu2=print("nhập tủ bạn muốn trả")
+                tra_tu(ma_tu2,khach_hang)
+            else:
+                print("Đã thoát chương trình.")
+                break
+    else:
+        print("Tên đăng nhập hoặc mật khẩu không đúng, vui lòng nhập lại.")
+
+
+
