@@ -16,19 +16,23 @@ class UI():
         self.mainHandle.Logout.clicked.connect(self.loadLoginForm)
         self.mainHandle.Kept.clicked.connect(self.loadChooseForm)
 
-        self.tu1 = Tu("A1", "trong")
-        self.tu2 = Tu("A2", "trong")
-        self.tu3 = Tu("A3", "trong")
-        self.tu4 = Tu("A4", "trong")
-        self.tu5 = Tu("A5", "trong")
-        self.danh_sach_tu = [tu1, tu2, tu3, tu4, tu5]
-        self.quan_ly_tu_do = QuanLyTuDo(self.danh_sach_tu)
-
+        self.kh1 = Khachhang("K224111388", "123")
+        self.kh2 = Khachhang("K224111399", "456")
+        self.kh3 = Khachhang("K224111381", "789")
+        self.kh1.them_khach_hang()
+        self.kh2.them_khach_hang()
+        self.kh3.them_khach_hang()
+        self.tu1 = Tu("A1", "0")
+        self.tu2 = Tu("A2", "0")
+        self.tu3 = Tu("A3", "0")
+        self.tu1.them_tu()
+        self.tu2.them_tu()
+        self.tu3.them_tu()
 
         self.loginUI = QMainWindow()
         self.loginHandle = LOGIN1_HANDLE(self.loginUI)
         self.loginHandle.ButLog.clicked.connect(self.loadMainForm)
-        self.loginHandle.showquanity.setText(str(self.quan_ly_tu_do.hien_thi_so_tu_con_trong()))
+        self.loginHandle.showquanity.setText(str(self.tu1.ting_tong_tu_trong()))
 
 
 
@@ -41,13 +45,13 @@ class UI():
 
         self.checkUI = QMainWindow()
         self.checkHandle = CHECK_HANDLE(self.checkUI)
-        self.checkHandle.pushButton.clicked.connect(self.ham)
+        #self.checkHandle.pushButton.clicked.connect(self.ham)
         self.loginUI.show()
     def loadMainForm(self):
         un = self.loginHandle.Ten.text()
         pw = self.loginHandle.Matkhau.text()
-        self.Khachhang = Khachhang(un, pw)
-        ketquadangnhap = self.Khachhang.login()
+        self.khachhang = Khachhang(un, pw)
+        ketquadangnhap = self.khachhang.login()
         if ketquadangnhap==0:
             self.mainUI.show()
             self.loginUI.hide()
@@ -70,20 +74,20 @@ class UI():
         self.chooseUI.show()
         self.mainUI.hide()
         self.loginUI.hide()
-    def ham(self):
-        code = self.checkHandle.plainTextEdit.text()
-        self.
-        if self.  =0 :
-            self.loginUI.show()
-            self.mainUI.hide()
-            self.checkUI.hide()
+    #def ham(self):
+        #code = self.checkHandle.plainTextEdit.text()
+        #self.
+        #if self.  =0 :
+            #self.loginUI.show()
+            #self.mainUI.hide()
+            #self.checkUI.hide()
 
-        else:
-            self.m = QtWidgets.QMessageBox()
-            self.m.setIcon(QtWidgets.QMessageBox.Information)
-            self.m.setInformativeText(f"Sai mã. Vui lòng thử lại")
-            self.m.setWindowTitle("Thông báo")
-            self.m.exec_()
+        #else:
+            #self.m = QtWidgets.QMessageBox()
+            #self.m.setIcon(QtWidgets.QMessageBox.Information)
+            #self.m.setInformativeText(f"Sai mã. Vui lòng thử lại")
+            #self.m.setWindowTitle("Thông báo")
+            #self.m.exec_()
 
 
 

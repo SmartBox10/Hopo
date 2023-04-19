@@ -3,7 +3,7 @@ import datetime as date
 from datetime import datetime
 
 # Đọc file Excel
-df = pd.read_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx')
+df = pd.read_excel('KHÁCH HÀNG HOPO.xlsx')
 # Tạo danh sách khách hàng từ các cột tương ứng với thuộc tính của khách hàng
 dskh = [{'ten_dang_nhap': row['TÊN ĐĂNG NHẬP'], 'ma_dinh_danh': row['MÃ ĐỊNH DANH']} for _, row in df.iterrows()]
 
@@ -125,19 +125,5 @@ def tra_tu(khachhang):
             return 0  # print("khách hàng chưa có đặt tủ")#0
 
 
-kh1 = Khachhang("K224111388", "123")
-kh2 = Khachhang("K224111399", "456")
-kh3 = Khachhang("K224111381", "789")
-kh1.them_khach_hang()
-kh2.them_khach_hang()
-kh3.them_khach_hang()
-tu1 = Tu("A1", "0")
-tu2 = Tu("A2", "0")
-tu3 = Tu("A3", "0")
-tu1.them_tu()
-tu2.them_tu()
-tu3.them_tu()
-print(kh1.login())
-print(chon_tu(tu1.ma_tu, kh1))
-print(Khachhang.danh_sach_khach_hang)
-print(Khachhang.danh_sach_khach_hang)
+
+
