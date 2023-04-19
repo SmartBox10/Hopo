@@ -3,7 +3,7 @@ import datetime as date
 from datetime import datetime
 
 # Đọc file Excel
-df = pd.read_excel('KHÁCH HÀNG HOPO.xlsx')
+df = pd.read_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx')
 # Tạo danh sách khách hàng từ các cột tương ứng với thuộc tính của khách hàng
 dskh = [{'ten_dang_nhap': row['TÊN ĐĂNG NHẬP'], 'ma_dinh_danh': row['MÃ ĐỊNH DANH']} for _, row in df.iterrows()]
 
@@ -15,12 +15,12 @@ class Khachhang:
     def __init__(self, ten_dang_nhap, mat_khau):
         self.ten_dang_nhap = ten_dang_nhap
         self.mat_khau = mat_khau
-        self.trang_thai = "0"
-        self.tu_da_chon = "0"
-        self.start_time = "0"
-        self.end_time = "0"
-        self.thoi_gian_su_dung = 1
-        self.ma_dinh_danh = "0"
+        self.trang_thai = "0" # Khách hàng ban đầu là chưa sử dụng dịch vụ
+        self.tu_da_chon = "0" # Chính vì vậy ban đầu thuộc tính tủ đã chọn của khách hàng là không có
+        self.start_time = "0" # Chưa chọn tủ chưa bắt đầu tính thời gian
+        self.end_time = "0" # Chưa trả tủ chưa có thời gian kết thúc
+        self.thoi_gian_su_dung = 0 # Mặc định thời gian sử dụng là 0 khi khách hàng chưa dùng dịch vụ
+        self.ma_dinh_danh = "0" # Mã định danh phục vụ cho việc thu tiền khách hàng thuê tủ nên sẽ được khởi tạo khi chọn tủ
 
     def them_khach_hang(self):  # Khởi tạo danh sách khách hàng ban đầu
         Khachhang.KhachhangList.append(self)
@@ -44,11 +44,11 @@ class Khachhang:
         self.ma_dinh_danh = dateNow.split(':')[0].replace(' ', '')[8:] + dateNow.split(':')[2][4:]
         return self.ma_dinh_danh
 
-    def kiem_tra_ma_bo_sung(self, ma_dinh_danh):
+    def kiem_tra_ma_dinh_danh(self, ma_dinh_danh):
         if self.ma_dinh_danh == ma_dinh_danh:
             return 1
         else:
-            return 0  # ma bổ sung sai
+            return 0  # mã định danh sai
 
 
 class Tu:  # Lop Tu
@@ -71,13 +71,13 @@ class Tu:  # Lop Tu
         return sum
 
 
-def chon_tu(ma_tu, khachhang):
+def chon_tu(ma_tu_chon, khachhang):
     if khachhang.trang_thai == "0":
         for tu in Tu.TuList:
-            if tu.ma_tu == ma_tu:
+            if tu.ma_tu == ma_tu_chon:
                 if tu.trang_thai == "0":
                     khachhang.trang_thai = "1"
-                    khachhang.tu_da_chon = ma_tu
+                    khachhang.tu_da_chon = ma_tu_chon
                     khachhang.start_time = datetime.now().strftime("%H:%M:%S")
                     khachhang.ma_dinh_danh = khachhang.tao_ma_dinh_danh()
                     for i in Khachhang.danh_sach_khach_hang:
@@ -86,44 +86,61 @@ def chon_tu(ma_tu, khachhang):
                     tu.trang_thai = "1"
                     tu.ten_khach_hang = khachhang.ten_dang_nhap
                 else:
-                    return 0
-        return 1  # 1 #chọn tủ thành công
+                    return 0 # Tủ khách hàng chọn đã được người khác sử dụng
+        return 1  # Chọn tủ thành công
     else:
-        return 0  # print("Tủ đã có người sử dụng")#0 #tu da được người khách sd hoac khach hang dang sử dụng tủ khác
+        return 0  # Khách hàng đã và đang dùng một tủ khác
 
 
 def tra_tu(khachhang):
     for tu in Tu.TuList:
         if tu.ten_khach_hang == khachhang.ten_dang_nhap:
-            if khachhang.thoi_gian_su_dung < 2:
+            khachhang.end_time = datetime.now().strftime("%H:%M:%S")
+            start_time = datetime.strptime(khachhang.start_time, "%H:%M:%S")
+            end_time = datetime.strptime(khachhang.end_time, "%H:%M:%S")
+            time_diff = end_time - start_time
+            khachhang.thoi_gian_su_dung = time_diff.seconds / 3600
+            if (khachhang.thoi_gian_su_dung > 2) or (khachhang.thoi_gian_su_dung == 2):
                 khachhang.trang_thai = "0"
                 khachhang.tu_da_chon = "0"
                 khachhang.ma_dinh_danh = "0"
                 for i in Khachhang.danh_sach_khach_hang:
                     if khachhang.ten_dang_nhap == i['ten_dang_nhap']:
                         i['ma_dinh_danh'] = 0
-                khachhang.end_time = datetime.now().strftime("%H:%M:%S")
-                start_time = datetime.strptime(khachhang.start_time, "%H:%M:%S")
-                end_time = datetime.strptime(khachhang.end_time, "%H:%M:%S")
-                time_diff = end_time - start_time
-                khachhang.thoi_gian_su_dung = time_diff.seconds / 3600
-                print(khachhang.thoi_gian_su_dung)
                 tu.trang_thai = "0"
                 tu.ten_khach_hang = "0"
-                return 1  # print("trả tủ đúng thời gian quy định")
+                return 1  # Trả đúng thời gian quy định
             else:
-                manhap = input("nhập mã định danh: ")
-                if khachhang.kiem_tra_ma_bo_sung(manhap) == 1:
+                ma_nhap = input("Nhập mã định danh: ")
+                if khachhang.kiem_tra_ma_dinh_danh(ma_nhap) == 1:
                     khachhang.trang_thai = "0"
                     khachhang.tu_da_chon = "0"
+                    khachhang.ma_dinh_danh = "0"
+                    for i in Khachhang.danh_sach_khach_hang:
+                        if khachhang.ten_dang_nhap == i['ten_dang_nhap']:
+                            i['ma_dinh_danh'] = 0
                     tu.trang_thai = "0"
                     tu.ten_khach_hang = "0"
-                    return 2  # print("nhập mã bổ sung đúng, trả tủ thành công")
+                    return 2  # Trả chậm, đã đóng tiền và nhập mã định danh
                 else:
-                    return 4  # nhập sai mã định danh
+                    return 4  # Nhập sai mã định danh
         else:
-            return 0  # print("khách hàng chưa có đặt tủ")#0
+            return 0  # Khách hàng chưa đặt tủ
 
 
-
-
+kh1 = Khachhang("K224111388", "123")
+kh2 = Khachhang("K224111399", "456")
+kh3 = Khachhang("K224111381", "789")
+kh1.them_khach_hang()
+kh2.them_khach_hang()
+kh3.them_khach_hang()
+tu1 = Tu("A1", "0")
+tu2 = Tu("A2", "0")
+tu3 = Tu("A3", "0")
+tu1.them_tu()
+tu2.them_tu()
+tu3.them_tu()
+print(kh1.login())
+print(chon_tu(tu1.ma_tu, kh1))
+print(Khachhang.danh_sach_khach_hang)
+print(tra_tu(kh1))
