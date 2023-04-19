@@ -6,7 +6,8 @@ from Login1Handle import LOGIN1_HANDLE
 from choosehandle import CHOOSE_HANDLE
 
 from checkhandle import CHECK_HANDLE
-from CodeXuLy import *
+from CodeXuLy import Tu
+from CodeXưLy import Khachhang
 
 class UI():
 
@@ -19,6 +20,8 @@ class UI():
         self.kh1 = Khachhang("K224111388", "123")
         self.kh2 = Khachhang("K224111399", "456")
         self.kh3 = Khachhang("K224111381", "789")
+        self.TuList=Tu.TuList
+        self.KhachhangList=Khachhang.KhachhangList
         self.kh1.them_khach_hang()
         self.kh2.them_khach_hang()
         self.kh3.them_khach_hang()
@@ -39,8 +42,7 @@ class UI():
 
         self.chooseUI = QMainWindow()
         self.chooseHandle = CHOOSE_HANDLE(self.chooseUI)
-        #self.chooseHandle.logout.clicked.connect(self.chooseHandle.chooseRadio)
-        self.chooseHandle.logout.clicked.connect(self.loadLoginForm)
+        self.chooseHandle.logout.clicked.connect(self.loadLoginForm1)
 
 
         self.checkUI = QMainWindow()
@@ -74,29 +76,67 @@ class UI():
         self.chooseUI.show()
         self.mainUI.hide()
         self.loginUI.hide()
-    #def ham(self):
-        #code = self.checkHandle.plainTextEdit.text()
-        #self.
-        #if self.  =0 :
-            #self.loginUI.show()
-            #self.mainUI.hide()
-            #self.checkUI.hide()
 
-        #else:
-            #self.m = QtWidgets.QMessageBox()
-            #self.m.setIcon(QtWidgets.QMessageBox.Information)
-            #self.m.setInformativeText(f"Sai mã. Vui lòng thử lại")
-            #self.m.setWindowTitle("Thông báo")
-            #self.m.exec_()
-
-
-
-
-
+    def loadLoginForm1(self):
+        self.matu=""
+        if self.chooseHandle.A1.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.A1)
+            self.matu="A1"
+#nên bỏ dòng này đi, chỉ khi nào bấm button giữ đồ thì mới lôi cái đăng nhập ra
+        elif self.chooseHandle.A2.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.A2)
+            self.matu = "A2"
+            #self.tu2.trang_thai = "1"
+        elif self.chooseHandle.A3.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.A3)
+            self.matu = "A3"
+            #self.tu3.trang_thai = "1"
+        elif self.chooseHandle.A4.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.A4)
 
 
+        elif self.chooseHandle.A5.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.A5)
 
 
+        elif self.chooseHandle.B1.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.B1)
+
+
+        elif self.chooseHandle.B2.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.B2)
+
+
+        elif self.chooseHandle.B3.isChecked() == True:
+            self.chooseHandle.list.append(self.chooseHandle.B3)
+        if chon_tu(self.matu,self.khachhang)== "0":#hiện message, tủ đã được sử dụng hoặc bạn đang sử dụng tủ khác rồi
+            self.m = QtWidgets.QMessageBox()
+            self.m.setIcon(QtWidgets.QMessageBox.Information)
+            self.m.setInformativeText("Tủ đang được sử dụng hoặc bạn đang sử dụng tủ khác")
+            self.m.setWindowTitle("Thông báo")
+            self.m.exec_()
+        else:
+            self.loginHandle.Ten.setText("")
+            self.loginHandle.Matkhau.setText("")
+            self.loginUI.show()
+            self.mainUI.hide()
+            self.chooseUI.hide()
+
+    def ham(self):
+        code = self.checkHandle.plainTextEdit.text()
+        kq = self.khachhang.kiem_tra_ma_dinh_danh(code)
+        if kq == 0:
+            self.loginUI.show()
+            self.mainUI.hide()
+            self.checkUI.hide()
+
+
+        else:
+            self.m = QtWidgets.QMessageBox()
+            self.m.setIcon(QtWidgets.QMessageBox.Information)
+            self.m.setInformativeText(f"Sai mã. Vui lòng thử lại")
+            self.m.setWindowTitle("Thông báo")
+            self.m.exec_()
 
 
 if __name__=="__main__":
