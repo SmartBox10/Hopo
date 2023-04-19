@@ -1,19 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from check import Ui_MainWindow
-class MAIN_HANDLE(Ui_MainWindow):
-    def __init__(self):
-        self.setupUi(MainWindow)
+class CHECK_HANDLE(Ui_MainWindow):
+    def __init__(self,mainwindow):
+        self.setupUi(mainWindow)
         #----------------------
         self.plainTextEdit.setPlainText("NHAP MA")
-        self.pushButton.clicked.connect(self.ham)
+
 
     def ham(self):
         code = self.plainTextEdit.toPlainText()
         if code == str(12345):
-            self.label.setText("success")
+            return 0
 
         else:
-            self.label.setText("fail")
+            return 1
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

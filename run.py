@@ -5,6 +5,7 @@ from Login1Handle import LOGIN1_HANDLE
 
 from choosehandle import CHOOSE_HANDLE
 
+from checkhandle import CHECK_HANDLE
 from CodeXuLy import *
 
 class UI():
@@ -34,9 +35,13 @@ class UI():
 
         self.chooseUI = QMainWindow()
         self.chooseHandle = CHOOSE_HANDLE(self.chooseUI)
+        self.chooseHandle.logout.clicked.connect(self.chooseHandle.chooseRadio)
         self.chooseHandle.logout.clicked.connect(self.loadLoginForm)
 
 
+        self.checkUI = QMainWindow()
+        self.checkHandle = CHECK_HANDLE(self.checkUI)
+        self.checkHandle.pushButton.clicked.connect(self.ham)
         self.loginUI.show()
     def loadMainForm(self):
         un = self.loginHandle.Ten.text()
@@ -65,6 +70,23 @@ class UI():
         self.chooseUI.show()
         self.mainUI.hide()
         self.loginUI.hide()
+    def ham(self):
+        code = self.checkHandle.plainTextEdit.text()
+        self.
+        if self.  =0 :
+            self.loginUI.show()
+            self.mainUI.hide()
+            self.checkUI.hide()
+
+        else:
+            self.m = QtWidgets.QMessageBox()
+            self.m.setIcon(QtWidgets.QMessageBox.Information)
+            self.m.setInformativeText(f"Sai mã. Vui lòng thử lại")
+            self.m.setWindowTitle("Thông báo")
+            self.m.exec_()
+
+
+
 
 
 

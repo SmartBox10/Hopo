@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow1(object):
-
+    list=[]
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(511, 273)
@@ -79,7 +79,7 @@ class Ui_MainWindow1(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, MainWindow ):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.A1.setText(_translate("MainWindow", "A1"))
@@ -98,7 +98,6 @@ class Ui_MainWindow1(object):
         self.B5.setText(_translate("MainWindow", "B5"))
         self.radioButton_15.setText(_translate("MainWindow", "C5"))
         self.logout.setText(_translate("MainWindow", "GIỮ ĐỒ"))
-        self.list=[]
 
         for i in self.list:
             i.hide()
