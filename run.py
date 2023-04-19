@@ -39,7 +39,7 @@ class UI():
 
         self.chooseUI = QMainWindow()
         self.chooseHandle = CHOOSE_HANDLE(self.chooseUI)
-        self.chooseHandle.logout.clicked.connect(self.chooseHandle.chooseRadio)
+        #self.chooseHandle.logout.clicked.connect(self.chooseHandle.chooseRadio)
         self.chooseHandle.logout.clicked.connect(self.loadLoginForm)
 
 
@@ -52,7 +52,7 @@ class UI():
         pw = self.loginHandle.Matkhau.text()
         self.khachhang = Khachhang(un, pw)
         ketquadangnhap = self.khachhang.login()
-        if ketquadangnhap==0:
+        if ketquadangnhap==1:
             self.mainUI.show()
             self.loginUI.hide()
             self.chooseUI.hide()
