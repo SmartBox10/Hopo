@@ -3,7 +3,7 @@ import datetime as date
 from datetime import datetime
 
 # Đọc file Excel
-df = pd.read_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx')
+df = pd.read_excel('KHÁCH HÀNG HOPO.xlsx')
 # Tạo danh sách khách hàng từ các cột tương ứng với thuộc tính của khách hàng
 dskh = [{'ten_dang_nhap': row['TÊN ĐĂNG NHẬP'], 'ma_dinh_danh': row['MÃ ĐỊNH DANH']} for _, row in df.iterrows()]
 
