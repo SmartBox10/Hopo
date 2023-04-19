@@ -3,7 +3,7 @@ import datetime as date
 from datetime import datetime
 
 # Đọc file Excel
-df = pd.read_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx')
+df = pd.read_excel('KHÁCH HÀNG HOPO.xlsx')
 # Tạo danh sách khách hàng từ các cột tương ứng với thuộc tính của khách hàng
 dskh = [{'ten_dang_nhap': row['ten_dang_nhap'], 'ma_dinh_danh': row['ma_dinh_danh']} for _, row in df.iterrows()]
 
@@ -85,7 +85,7 @@ def chon_tu(ma_tu_chon, khachhang):
                             i['ma_dinh_danh'] = khachhang.ma_dinh_danh
                     # Lưu mã định danh mới xuống file Excel
                     df = pd.DataFrame(dskh)
-                    df.to_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx', index=False)
+                    df.to_excel('KHÁCH HÀNG HOPO.xlsx', index=False)
                     tu.trang_thai = "1"
                     tu.ten_khach_hang = khachhang.ten_dang_nhap
                 else:
@@ -112,7 +112,7 @@ def tra_tu(khachhang):
                         i['ma_dinh_danh'] = 0
                 # Lưu mã định danh mới xuống file Excel
                 df = pd.DataFrame(dskh)
-                df.to_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx', index=False)
+                df.to_excel('KHÁCH HÀNG HOPO.xlsx', index=False)
                 tu.trang_thai = "0"
                 tu.ten_khach_hang = "0"
                 return 1  # Trả đúng thời gian quy định
@@ -127,7 +127,7 @@ def tra_tu(khachhang):
                             i['ma_dinh_danh'] = 0
                     # Lưu mã định danh mới xuống file Excel
                     df = pd.DataFrame(dskh)
-                    df.to_excel('D:/LINH/KHÁCH HÀNG HOPO.xlsx', index=False)
+                    df.to_excel('KHÁCH HÀNG HOPO.xlsx', index=False)
                     tu.trang_thai = "0"
                     tu.ten_khach_hang = "0"
                     return 2  # Trả chậm, đã đóng tiền và nhập mã định danh
