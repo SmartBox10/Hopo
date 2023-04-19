@@ -173,9 +173,12 @@ print(chon_tu(tu1.ma_tu, kh1))
 print(tu1.trang_thai, tu1.ten_khach_hang)
 print(Khachhang.danh_sach_khach_hang)
 <<<<<<< HEAD
+<<<<<<< HEAD
 print(tra_tu(kh1))
 print(tu1.trang_thai, tu1.ten_khach_hang)
 =======
+=======
+>>>>>>> a071e2eca4f04323f9ea98e9caf802be535af984
 <<<<<<< Updated upstream
 print(tra_tu(kh1))
 =======
@@ -185,4 +188,7 @@ print(tra_tu(kh1))
 print(tra_tu(kh1))
 >>>>>>> 75f7045ed05251020c7f12e53a0b0cc9f6805f6e
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> a071e2eca4f04323f9ea98e9caf802be535af984
+=======
 >>>>>>> a071e2eca4f04323f9ea98e9caf802be535af984
