@@ -6,8 +6,8 @@ from Login1Handle import LOGIN1_HANDLE
 from choosehandle import CHOOSE_HANDLE
 
 from checkhandle import CHECK_HANDLE
-from CodeXuLy import Tu
-from CodeXưLy import Khachhang
+from CodeXuLy import *
+
 
 class UI():
 
@@ -20,8 +20,6 @@ class UI():
         self.kh1 = Khachhang("K224111388", "123")
         self.kh2 = Khachhang("K224111399", "456")
         self.kh3 = Khachhang("K224111381", "789")
-        self.TuList=Tu.TuList
-        self.KhachhangList=Khachhang.KhachhangList
         self.kh1.them_khach_hang()
         self.kh2.them_khach_hang()
         self.kh3.them_khach_hang()
@@ -58,6 +56,7 @@ class UI():
             self.mainUI.show()
             self.loginUI.hide()
             self.chooseUI.hide()
+            print(self.khachhang.trang_thai)
         else:
             self.msg = QtWidgets.QMessageBox()
             self.msg.setIcon(QtWidgets.QMessageBox.Information)
@@ -78,19 +77,14 @@ class UI():
         self.loginUI.hide()
 
     def loadLoginForm1(self):
-        self.matu=""
         if self.chooseHandle.A1.isChecked() == True:
-            self.chooseHandle.list.append(self.chooseHandle.A1)
+            #self.chooseHandle.list.append(self.chooseHandle.A1)
             self.matu="A1"
-#nên bỏ dòng này đi, chỉ khi nào bấm button giữ đồ thì mới lôi cái đăng nhập ra
+#nên bỏ dòng này đi, chỉ khi nào bấm button giữ đồ thì mới lôi cái hàm chọn tủ ra
         elif self.chooseHandle.A2.isChecked() == True:
-            self.chooseHandle.list.append(self.chooseHandle.A2)
             self.matu = "A2"
-            #self.tu2.trang_thai = "1"
         elif self.chooseHandle.A3.isChecked() == True:
-            self.chooseHandle.list.append(self.chooseHandle.A3)
             self.matu = "A3"
-            #self.tu3.trang_thai = "1"
         elif self.chooseHandle.A4.isChecked() == True:
             self.chooseHandle.list.append(self.chooseHandle.A4)
 
@@ -109,19 +103,31 @@ class UI():
 
         elif self.chooseHandle.B3.isChecked() == True:
             self.chooseHandle.list.append(self.chooseHandle.B3)
-        if chon_tu(self.matu,self.khachhang)== "0":#hiện message, tủ đã được sử dụng hoặc bạn đang sử dụng tủ khác rồi
+        if chon_tu(self.matu,self.khachhang)== 1:
+
+            self.loginHandle.Ten.setText("")
+            self.loginHandle.Matkhau.setText("")
+            if self.matu=="A1":
+                self.chooseHandle.list.append(self.chooseHandle.A1)
+            elif self.matu=="A2":
+                self.chooseHandle.list.append(self.chooseHandle.A2)
+            else:
+                self.chooseHandle.list.append(self.chooseHandle.A3)
+
+            self.chooseHandle.hide_tu()
+            print(self.chooseHandle.list)
+            self.loginUI.show()
+            self.mainUI.hide()
+            self.chooseUI.hide()
+        else:
+            #trường hợp khach hang đặt tủ ko thành công
             self.m = QtWidgets.QMessageBox()
             self.m.setIcon(QtWidgets.QMessageBox.Information)
             self.m.setInformativeText("Tủ đang được sử dụng hoặc bạn đang sử dụng tủ khác")
             self.m.setWindowTitle("Thông báo")
             self.m.exec_()
-        else:
-            self.loginHandle.Ten.setText("")
-            self.loginHandle.Matkhau.setText("")
-            self.loginUI.show()
-            self.mainUI.hide()
-            self.chooseUI.hide()
 
+#tại sao trạng thái cuaủa khách ahfng lại không thay đổi
     def ham(self):
         code = self.checkHandle.plainTextEdit.text()
         kq = self.khachhang.kiem_tra_ma_dinh_danh(code)

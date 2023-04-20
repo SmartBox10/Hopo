@@ -52,7 +52,7 @@ class Khachhang:
 
 
 class Tu:  # Lop Tu
-    TuList = []
+    TuList=[]
 
     def __init__(self, ma_tu, trang_thai):
         self.ma_tu = ma_tu
@@ -77,6 +77,7 @@ def chon_tu(ma_tu_chon, khachhang):
             if tu.ma_tu == ma_tu_chon:
                 if tu.trang_thai == "0":
                     khachhang.trang_thai = "1"
+                    tu.trang_thai = "1"
                     khachhang.tu_da_chon = ma_tu_chon
                     khachhang.start_time = datetime.now().strftime("%H:%M:%S")
                     khachhang.ma_dinh_danh = khachhang.tao_ma_dinh_danh()
@@ -86,13 +87,13 @@ def chon_tu(ma_tu_chon, khachhang):
                     # Lưu mã định danh mới xuống file Excel
                     df = pd.DataFrame(dskh)
                     df.to_excel('KHÁCH HÀNG HOPO.xlsx', index=False)
-                    tu.trang_thai = "1"
+
                     tu.ten_khach_hang = khachhang.ten_dang_nhap
                 else:
                     return 0 # Tủ khách hàng chọn đã được người khác sử dụng
         return 1  # Chọn tủ thành công
     else:
-        return 0  # Khách hàng đã và đang dùng một tủ khác
+        return 2  # Khách hàng đã và đang dùng một tủ khác
 
 
 def tra_tu(khachhang):
@@ -135,4 +136,23 @@ def tra_tu(khachhang):
                     return 4  # Nhập sai mã định danh
         else:
             return 0  # Khách hàng chưa đặt tủ
+kh1 = Khachhang("K224111388", "123")
+kh2 = Khachhang("K224111399", "456")
+kh3 = Khachhang("K224111381", "789")
+kh1.them_khach_hang()
+kh2.them_khach_hang()
+kh3.them_khach_hang()
+tu1 = Tu("A1", "0")
+tu2 = Tu("A2", "0")
+tu3 = Tu("A3", "0")
+tu1.them_tu()
+tu2.them_tu()
+tu3.them_tu()
+print(kh1.login())
+print(chon_tu(tu1.ma_tu, kh1))
+print(kh1.trang_thai)
+print(tu1.trang_thai, tu1.ten_khach_hang)
+print(Khachhang.danh_sach_khach_hang)
+print(tra_tu(kh1))
+print(tu1.trang_thai, tu1.ten_khach_hang)
 
