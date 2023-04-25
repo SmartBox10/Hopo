@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow1(object):
     list=[]
+    list1=[]
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(511, 273)
@@ -98,9 +99,12 @@ class Ui_MainWindow1(object):
         self.B5.setText(_translate("MainWindow", "B5"))
         self.radioButton_15.setText(_translate("MainWindow", "C5"))
         self.logout.setText(_translate("MainWindow", "GIỮ ĐỒ"))
-
+    def hide_tu(self):
         for i in self.list:
             i.hide()
+    def show_tu(self):
+        for j in self.list1:
+            j.show()
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
