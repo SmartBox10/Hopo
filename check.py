@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'untitled1.ui'
+# Form implementation generated from reading ui file 'check.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,39 +9,26 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(550, 336)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.splitter = QtWidgets.QSplitter(self.centralwidget)
-        self.splitter.setGeometry(QtCore.QRect(140, 50, 256, 219))
-        self.splitter.setOrientation(QtCore.Qt.Vertical)
-        self.splitter.setObjectName("splitter")
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.splitter)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setItalic(False)
-        font.setWeight(75)
-        self.plainTextEdit.setFont(font)
-        self.plainTextEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.plainTextEdit.setAutoFillBackground(False)
-        self.plainTextEdit.setLineWidth(3)
-        self.plainTextEdit.setTabChangesFocus(False)
-        self.plainTextEdit.setLineWrapMode(QtWidgets.QPlainTextEdit.WidgetWidth)
-        self.plainTextEdit.setOverwriteMode(False)
-        self.plainTextEdit.setTabStopDistance(81.0)
-        self.plainTextEdit.setCursorWidth(0)
-        self.plainTextEdit.setCenterOnScroll(False)
-        self.plainTextEdit.setObjectName("plainTextEdit")
-        self.pushButton = QtWidgets.QPushButton(self.splitter)
-        self.pushButton.setObjectName("pushButton")
-        self.label = QtWidgets.QLabel(self.splitter)
+        self.check_ma = QtWidgets.QPushButton(self.centralwidget)
+        self.check_ma.setGeometry(QtCore.QRect(220, 180, 101, 41))
+        self.check_ma.setObjectName("check_ma")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(220, 80, 121, 31))
         self.label.setObjectName("label")
+        self.ma_dinh_danh = QtWidgets.QLineEdit(self.centralwidget)
+        self.ma_dinh_danh.setGeometry(QtCore.QRect(210, 140, 131, 31))
+        self.ma_dinh_danh.setObjectName("ma_dinh_danh")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 550, 18))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 550, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -54,11 +41,15 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.plainTextEdit.setPlainText(_translate("MainWindow", "\n"
-"               \n"
-"     NHẬP MÃ"))
-        self.pushButton.setText(_translate("MainWindow", "SUBMIT"))
-        self.label.setText(_translate("MainWindow", "RESULT "))
+        self.check_ma.setText(_translate("MainWindow", "Kiểm tra"))
+        self.label.setText(_translate("MainWindow", "Nhập mã được cung cấp"))
 
 
-
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
